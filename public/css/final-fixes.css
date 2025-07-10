@@ -1,0 +1,94 @@
+/* Additional refinements for Instagram-like layout */
+
+/* Small fixes for comment and reply containers */
+.d-flex.justify-content-between.align-items-center {
+    margin-bottom: 0 !important;
+}
+
+.d-flex > .flex-shrink-0 {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+}
+
+/* Username and comment in one line - Instagram style */
+.comment-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    line-height: 1.2;
+}
+
+.comment-wrapper .comment-user {
+    margin-right: 5px;
+}
+
+/* Fix spacing between like button and reply button */
+.comment-actions {
+    margin-top: 0.25rem !important;
+}
+
+/* Better spacing for reply forms */
+.reply-form {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.reply-form .form-control {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    min-height: 32px;
+}
+
+/* Better layout for main activity image */
+.activity-image {
+    border-radius: 0;
+}
+
+/* Fix padding on comment section */
+.comments-container .card-body {
+    padding: 0.5rem;
+}
+
+/* Fix post caption area */
+.activity-detail .card-body {
+    padding: 0.75rem 1rem;
+}
+
+/* Add subtle border between comment items */
+.comment-item {
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+/* Remove border from last comment item */
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+/* Style for edit forms */
+.edit-comment-form textarea, .reply-form textarea {
+    font-size: 0.75rem;
+}
+
+/* Making back button more compact */
+.back-button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Make dates and metadata more subtle */
+.activity-info {
+    font-size: 0.7rem;
+}
+
+/* Fix any image issues - disesuaikan di force-profile-fix.css */
+img.comment-avatar, img.reply-avatar {
+    max-width: 22px;
+    max-height: 22px;
+}
+
+/* Ensure consistent styling for cancel buttons */
+.btn-outline-secondary {
+    border-color: #dee2e6;
+}

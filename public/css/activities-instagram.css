@@ -1,0 +1,259 @@
+/* Instagram-inspired styles for activities list page */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Activity card styling - Instagram like */
+.activity-card {
+    transition: all 0.2s ease;
+    border: none;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 0;
+    margin-bottom: 1rem;
+}
+
+.activity-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.activity-image-container {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    background-color: #f8f9fa;
+}
+
+.activity-card .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/* Instagram-like card header with user info */
+.activity-user-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #efefef;
+}
+
+.activity-user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+.activity-user-placeholder {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.7rem;
+    background-color: #6610f2;
+    color: white;
+    margin-right: 0.5rem;
+}
+
+.activity-username {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #262626;
+    margin-bottom: 0;
+}
+
+/* Activity content styling */
+.activity-card .card-body {
+    padding: 0.75rem;
+}
+
+.activity-card .card-title {
+    font-weight: 600;
+    color: #262626;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+}
+
+.activity-card .card-text {
+    color: #262626;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+/* Action buttons like Instagram */
+.activity-actions {
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid #efefef;
+}
+
+.activity-actions button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    color: #262626;
+}
+
+.activity-actions .btn-like.active i {
+    color: #ed4956;
+}
+
+/* Latest comments styling */
+.latest-comment {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+}
+
+.comment-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+.comment-placeholder-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.7rem;
+    background-color: #6610f2;
+    color: white;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    font-size: 0.75rem;
+    line-height: 1.3;
+}
+
+.comment-username {
+    font-weight: 600;
+    color: #262626;
+    margin-right: 0.3rem;
+}
+
+/* Activity date */
+.activity-date {
+    font-size: 0.7rem;
+    color: #8e8e8e;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* See all comments link */
+.view-all-comments {
+    padding: 0.5rem 0.75rem;
+    color: #8e8e8e;
+    font-size: 0.75rem;
+    border-bottom: 1px solid #efefef;
+    display: block;
+}
+
+/* Activity stats */
+.activity-stats {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.3rem 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 0.7rem;
+    border-top-left-radius: 3px;
+}
+
+/* Button styling */
+.btn-read-more {
+    border-radius: 3px;
+    padding: 0.3rem 0.75rem;
+    font-weight: 500;
+    font-size: 0.75rem;
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    color: #262626;
+}
+
+.btn-read-more:hover {
+    background-color: #fafafa;
+    color: #262626;
+}
+
+/* Header styling */
+.activity-header {
+    background: #ffffff;
+    color: #262626;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #dbdbdb;
+    box-shadow: none;
+}
+
+.activity-header h1 {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Empty state */
+.empty-activities {
+    text-align: center;
+    padding: 2rem 1rem;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+    border-radius: 3px;
+}
+
+.empty-activities i {
+    font-size: 2rem;
+    color: #8e8e8e;
+    margin-bottom: 0.5rem;
+}
+
+/* Page container */
+.container {
+    max-width: 935px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+    .activity-image-container {
+        height: 250px;
+    }
+    
+    .activity-card .card-title {
+        font-size: 0.9rem;
+    }
+    
+    .activity-card .card-text {
+        font-size: 0.75rem;
+    }
+    
+    .comment-avatar,
+    .comment-placeholder-avatar {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .comment-content {
+        font-size: 0.7rem;
+    }
+}

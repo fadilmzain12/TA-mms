@@ -1,0 +1,424 @@
+// filepath: c:\xampp\htdocs\MMS 9\public\js\fixes.js
+/* fixes.js */
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("Fixes.js loaded and running...");
+  
+  // Fix for comment avatars
+  const commentAvatars = document.querySelectorAll('.comment-avatar, .comment-placeholder-avatar');
+  commentAvatars.forEach(avatar => {
+    avatar.style.width = '22px';
+    avatar.style.height = '22px';
+    avatar.style.maxWidth = '22px';
+    avatar.style.maxHeight = '22px';
+    avatar.style.minWidth = '22px';
+    avatar.style.minHeight = '22px';
+    avatar.style.borderRadius = '50%';
+    avatar.style.border = '1px solid #dbdbdb';
+    avatar.style.overflow = 'hidden';
+    avatar.style.flexShrink = '0';
+    avatar.style.objectFit = 'cover';
+  });
+
+  // Fix for reply avatars
+  const replyAvatars = document.querySelectorAll('.reply-avatar, .reply-placeholder-avatar');
+  replyAvatars.forEach(avatar => {
+    avatar.style.width = '18px';
+    avatar.style.height = '18px';
+    avatar.style.maxWidth = '18px';
+    avatar.style.maxHeight = '18px';
+    avatar.style.minWidth = '18px';
+    avatar.style.minHeight = '18px';
+    avatar.style.borderRadius = '50%';
+    avatar.style.border = '1px solid #dbdbdb';
+    avatar.style.overflow = 'hidden';
+    avatar.style.flexShrink = '0';
+    avatar.style.objectFit = 'cover';
+  });    
+  
+  // Fix for placeholder avatars
+  const placeholderAvatars = document.querySelectorAll('.comment-placeholder-avatar, .reply-placeholder-avatar');
+  placeholderAvatars.forEach(avatar => {
+    avatar.style.display = 'flex';
+    avatar.style.alignItems = 'center';
+    avatar.style.justifyContent = 'center';
+    avatar.style.backgroundColor = '#6610f2';
+    avatar.style.color = 'white';
+    avatar.style.fontSize = avatar.classList.contains('reply-placeholder-avatar') ? '8px' : '10px';
+  });
+  
+  // Fix for reply functionality
+  // Toggle reply forms
+  const replyButtons = document.querySelectorAll('.reply-btn');
+  if (replyButtons.length > 0) {
+    replyButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const commentId = this.getAttribute('data-comment-id');
+        const replyForm = document.getElementById(`reply-form-${commentId}`);
+        
+        // Close any other open reply forms
+        document.querySelectorAll('.reply-form:not(.d-none)').forEach(form => {
+          if (form.id !== `reply-form-${commentId}`) {
+            form.classList.add('d-none');
+          }
+        });
+        
+        replyForm.classList.toggle('d-none');
+        if (!replyForm.classList.contains('d-none')) {
+          const textarea = replyForm.querySelector('textarea');
+          if (textarea) {
+            textarea.focus();
+          }
+          // Add animation class for better UX
+          replyForm.classList.add('bounce-effect');
+          // Remove animation class after animation completes
+          setTimeout(() => {
+              replyForm.classList.remove('bounce-effect');
+          }, 500);
+        }
+      });
+    });
+  }
+  
+  // Cancel reply buttons
+  const cancelReplyButtons = document.querySelectorAll('.cancel-reply-btn');
+  if (cancelReplyButtons.length > 0) {
+    console.log(`Found ${cancelReplyButtons.length} cancel reply buttons`);
+    cancelReplyButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log("Cancel reply button clicked");
+        
+        const replyForm = this.closest('.reply-form');
+        if (replyForm) {
+          replyForm.classList.add('d-none');
+        } else {
+          console.error("Reply form not found for cancel button");
+        }
+      });
+    });
+  } else {
+    console.warn("No cancel reply buttons found");
+  }
+
+  // Character counter for comment/reply textareas
+  const textAreas = document.querySelectorAll('.comment-textarea, .reply-textarea');
+  if (textAreas.length > 0) {
+    console.log(`Found ${textAreas.length} textareas for character counting`);
+    
+    textAreas.forEach(textarea => {
+      // Create counter element if it doesn't exist
+      let counterId = `char-counter-${textarea.id || Math.random().toString(36).substr(2, 9)}`;
+      let counter = document.getElementById(counterId);
+      
+      if (!counter) {
+        counter = document.createElement('div');
+        counter.id = counterId;
+        counter.className = 'char-counter small text-muted text-end';
+        counter.innerHTML = '0/500';
+        textarea.parentNode.insertBefore(counter, textarea.nextSibling);
+      }
+      
+      // Set max length if not already set
+      if (!textarea.getAttribute('maxlength')) {
+        textarea.setAttribute('maxlength', '500');
+      }
+      
+      // Update counter on input
+      textarea.addEventListener('input', function() {
+        const maxLength = parseInt(this.getAttribute('maxlength') || 500);
+        const currentLength = this.value.length;
+        counter.innerHTML = `${currentLength}/${maxLength}`;
+        
+        // Change color when approaching limit
+        if (currentLength > maxLength * 0.8) {
+          counter.classList.add('text-warning');
+        } else {
+          counter.classList.remove('text-warning');
+        }
+        
+        // Add auto-resize functionality
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+      });
+      
+      // Trigger input event to initialize counter and height
+      const event = new Event('input');
+      textarea.dispatchEvent(event);
+    });
+  }
+
+  // Like functionality for comments and replies
+  const likeButtons = document.querySelectorAll('.like-button');
+  if (likeButtons.length > 0) {
+    console.log(`Found ${likeButtons.length} like buttons`);
+    
+    likeButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const itemId = this.getAttribute('data-id');
+        const itemType = this.getAttribute('data-type'); // 'comment' or 'reply'
+        const likeCountElement = this.querySelector('.like-count');
+        
+        if (!itemId || !itemType) {
+          console.error('Missing data-id or data-type attribute for like button');
+          return;
+        }
+        
+        // Toggle like status visually first (optimistic UI update)
+        this.classList.toggle('liked');
+        
+        // Update like count
+        let likeCount = parseInt(likeCountElement?.textContent || '0');
+        if (this.classList.contains('liked')) {
+          likeCount++;
+          this.querySelector('i').className = 'fas fa-heart text-danger';
+        } else {
+          likeCount = Math.max(0, likeCount - 1);
+          this.querySelector('i').className = 'far fa-heart';
+        }
+        
+        if (likeCountElement) {
+          likeCountElement.textContent = likeCount;
+        }
+        
+        // Send AJAX request to server
+        const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        
+        fetch(`/like/${itemType}/${itemId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrf,
+            'Accept': 'application/json'
+          },
+          credentials: 'same-origin'
+        })
+        .then(response => {
+          if (!response.ok) {
+            // Revert optimistic update if server returns error
+            console.error(`Error liking ${itemType}: ${response.statusText}`);
+            this.classList.toggle('liked');
+            
+            likeCount = parseInt(likeCountElement?.textContent || '0');
+            if (!this.classList.contains('liked')) {
+              likeCount--;
+              this.querySelector('i').className = 'far fa-heart';
+            } else {
+              likeCount++;
+              this.querySelector('i').className = 'fas fa-heart text-danger';
+            }
+            
+            if (likeCountElement) {
+              likeCountElement.textContent = likeCount;
+            }
+            throw new Error(`Error liking ${itemType}: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(`${itemType} like status updated: ${data.liked}`);
+          
+          // Update UI from server response (handles edge cases)
+          if (data.liked !== this.classList.contains('liked')) {
+            this.classList.toggle('liked');
+            
+            if (likeCountElement) {
+              likeCountElement.textContent = data.count || 0;
+            }
+            
+            this.querySelector('i').className = data.liked ? 
+              'fas fa-heart text-danger' : 'far fa-heart';
+          }
+        })
+        .catch(error => {
+          console.error('Like action failed:', error);
+          // Error already handled with UI reversion above
+        });
+      });
+    });
+  }
+
+  // Form validation for reply forms
+  const replyForms = document.querySelectorAll('.reply-form form');
+  if (replyForms.length > 0) {
+    console.log(`Found ${replyForms.length} reply forms for validation`);
+    
+    replyForms.forEach(form => {
+      form.addEventListener('submit', function(e) {
+        const textarea = this.querySelector('textarea');
+        const submitBtn = this.querySelector('[type="submit"]');
+        
+        // Basic validation
+        if (!textarea || !textarea.value.trim()) {
+          e.preventDefault();
+          
+          // Show error
+          let errorMsg = this.querySelector('.invalid-feedback');
+          if (!errorMsg) {
+            errorMsg = document.createElement('div');
+            errorMsg.className = 'invalid-feedback';
+            textarea.parentNode.appendChild(errorMsg);
+          }
+          
+          errorMsg.textContent = 'Reply cannot be empty';
+          errorMsg.style.display = 'block';
+          textarea.classList.add('is-invalid');
+          
+          // Hide error after 3 seconds
+          setTimeout(() => {
+            textarea.classList.remove('is-invalid');
+            errorMsg.style.display = 'none';
+          }, 3000);
+          
+          return false;
+        }
+        
+        // Disable submit button to prevent double submission
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          
+          // Add loading spinner
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+          
+          // Re-enable button after 5 seconds if form still hasn't submitted (failsafe)
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          }, 5000);
+        }
+      });
+    });
+  }
+
+  // Instagram like button functionality
+  const instagramLikeButtons = document.querySelectorAll('.btn-like');
+  if (instagramLikeButtons.length > 0) {
+    console.log(`Found ${instagramLikeButtons.length} Instagram-style like buttons`);
+    
+    instagramLikeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Toggle active class
+        this.classList.toggle('active');
+        
+        // Toggle heart icon
+        const icon = this.querySelector('i');
+        if (this.classList.contains('active')) {
+          icon.className = 'bi bi-heart-fill';
+          
+          // Add animation
+          icon.classList.add('like-animation');
+          setTimeout(() => {
+            icon.classList.remove('like-animation');
+          }, 800);
+        } else {
+          icon.className = 'bi bi-heart';
+        }
+        
+        // Get activity ID for AJAX request
+        const activityId = this.closest('.activity-card').getAttribute('data-id');
+        if (!activityId) {
+          console.error('Missing data-id attribute on activity card');
+          return;
+        }
+        
+        // Send AJAX request to server
+        const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        
+        fetch(`/like/activity/${activityId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrf,
+            'Accept': 'application/json'
+          },
+          credentials: 'same-origin'
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(`Activity like status updated: ${data.liked}`);
+        })
+        .catch(error => {
+          console.error('Activity like action failed:', error);
+        });
+      });
+    });
+  }
+
+  // Fix for emoji support in comments/replies
+  const emojiButtons = document.querySelectorAll('.emoji-picker-button');
+  if (emojiButtons.length > 0) {
+    emojiButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('data-target');
+        const targetTextarea = document.getElementById(targetId);
+        
+        if (!targetTextarea) {
+          console.error(`Target textarea #${targetId} not found`);
+          return;
+        }
+        
+        // Simple emoji picker (can be replaced with a proper library)
+        const commonEmojis = ['😀', '👍', '❤️', '🎉', '👏', '🤔', '😊', '🙏'];
+        
+        // Create or toggle emoji panel
+        let emojiPanel = document.getElementById(`emoji-panel-${targetId}`);
+        
+        if (emojiPanel) {
+          emojiPanel.classList.toggle('d-none');
+          return;
+        }
+        
+        emojiPanel = document.createElement('div');
+        emojiPanel.id = `emoji-panel-${targetId}`;
+        emojiPanel.className = 'emoji-panel bg-light p-2 rounded border';
+        emojiPanel.style.display = 'flex';
+        emojiPanel.style.flexWrap = 'wrap';
+        emojiPanel.style.gap = '5px';
+        
+        commonEmojis.forEach(emoji => {
+          const emojiBtn = document.createElement('button');
+          emojiBtn.type = 'button';
+          emojiBtn.className = 'btn btn-sm btn-light';
+          emojiBtn.textContent = emoji;
+          emojiBtn.addEventListener('click', function() {
+            // Insert emoji at cursor position
+            const cursorPos = targetTextarea.selectionStart;
+            const textBefore = targetTextarea.value.substring(0, cursorPos);
+            const textAfter = targetTextarea.value.substring(cursorPos);
+            
+            targetTextarea.value = textBefore + emoji + textAfter;
+            
+            // Update cursor position
+            const newCursorPos = cursorPos + emoji.length;
+            targetTextarea.focus();
+            targetTextarea.setSelectionRange(newCursorPos, newCursorPos);
+            
+            // Trigger input event to update character counter
+            const event = new Event('input');
+            targetTextarea.dispatchEvent(event);
+          });
+          
+          emojiPanel.appendChild(emojiBtn);
+        });
+        
+        // Add close button
+        const closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = 'btn btn-sm btn-light';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.addEventListener('click', function() {
+          emojiPanel.classList.add('d-none');
+        });
+        
+        emojiPanel.appendChild(closeBtn);
+        
+        // Insert panel after button
+        this.parentNode.insertBefore(emojiPanel, this.nextSibling);
+      });
+    });
+  }
+});

@@ -1,0 +1,24 @@
+/* Inline styles to force correct avatar sizes */
+.comment-avatar, 
+.comment-placeholder-avatar, 
+img.comment-avatar, 
+div.comment-placeholder-avatar {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+}
+
+.reply-avatar, 
+.reply-placeholder-avatar, 
+img.reply-avatar, 
+div.reply-placeholder-avatar {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
+}

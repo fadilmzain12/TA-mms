@@ -1,0 +1,191 @@
+/* Instagram Standard Aspect Ratios Implementation */
+
+/* Base container setup with Instagram standards */
+.activity-detail .activity-image-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    background-color: #000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* Default Instagram square ratio 1:1 */
+    aspect-ratio: 1 / 1 !important;
+    max-height: 540px !important; /* Half of 1080px for web display */
+}
+
+/* Instagram image sizing with proper aspect ratios */
+.activity-detail .activity-image-container img,
+.activity-detail .activity-image,
+.activity-image-container img,
+.activity-image {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Square posts (1:1 ratio) - 1080x1080 equivalent */
+.activity-image-container.square {
+    aspect-ratio: 1 / 1 !important;
+    max-height: 540px !important;
+}
+
+/* Landscape posts (1.91:1 ratio) - 1080x566 equivalent */
+.activity-image-container.landscape {
+    aspect-ratio: 1.91 / 1 !important;
+    max-height: 283px !important;
+}
+
+/* Portrait posts (4:5 ratio) - 1080x1350 equivalent */
+.activity-image-container.portrait {
+    aspect-ratio: 4 / 5 !important;
+    max-height: 675px !important;
+}
+
+/* Mobile responsive - Instagram standards scaled down */
+@media (max-width: 768px) {
+    /* Default square ratio for mobile */
+    .activity-detail .activity-image-container {
+        aspect-ratio: 1 / 1 !important;
+        max-height: 350px !important;
+    }
+    
+    /* Square posts mobile */
+    .activity-image-container.square {
+        aspect-ratio: 1 / 1 !important;
+        max-height: 350px !important;
+    }
+    
+    /* Landscape posts mobile */
+    .activity-image-container.landscape {
+        aspect-ratio: 1.91 / 1 !important;
+        max-height: 183px !important;
+    }
+    
+    /* Portrait posts mobile */
+    .activity-image-container.portrait {
+        aspect-ratio: 4 / 5 !important;
+        max-height: 437px !important;
+    }
+    
+    .activity-detail .activity-image-container img,
+    .activity-detail .activity-image,
+    .activity-image-container img,
+    .activity-image {
+        max-height: 100% !important;
+    }
+    
+    .card-img-top {
+        max-height: 200px !important;
+    }
+    
+    .activity-card .card-img-top,
+    .activity-image-container .card-img-top {
+        height: 200px !important;
+        max-height: 200px !important;
+    }
+}
+
+/* Very small screens - Instagram standards further scaled */
+@media (max-width: 480px) {
+    /* Default square ratio for small mobile */
+    .activity-detail .activity-image-container {
+        aspect-ratio: 1 / 1 !important;
+        max-height: 280px !important;
+    }
+    
+    /* Square posts small mobile */
+    .activity-image-container.square {
+        aspect-ratio: 1 / 1 !important;
+        max-height: 280px !important;
+    }
+    
+    /* Landscape posts small mobile */
+    .activity-image-container.landscape {
+        aspect-ratio: 1.91 / 1 !important;
+        max-height: 147px !important;
+    }
+    
+    /* Portrait posts small mobile */
+    .activity-image-container.portrait {
+        aspect-ratio: 4 / 5 !important;
+        max-height: 350px !important;
+    }
+    
+    .activity-detail .activity-image-container img,
+    .activity-detail .activity-image,
+    .activity-image-container img,
+    .activity-image {
+        max-height: 100% !important;
+    }
+    
+    .activity-card .card-img-top,
+    .activity-image-container .card-img-top {
+        height: 150px !important;
+        max-height: 150px !important;
+    }
+}
+
+/* Ensure no horizontal overflow */
+.activity-detail {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.card {
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+/* Fix for activity index page images */
+.activity-card .card-img-top,
+.activity-image-container .card-img-top {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* General card image fix */
+.card-img-top {
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 300px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Extra strong container rules */
+.container, .container-fluid, .row, .col, .col-md-7, .activity-container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Force all images in activity pages to respect boundaries */
+.activity-detail img,
+[class*="activity"] img,
+.card img,
+.card-body img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    max-height: 500px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* Prevent any element from overflowing */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}

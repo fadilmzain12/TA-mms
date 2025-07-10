@@ -1,0 +1,189 @@
+/* CSS Fix untuk foto profil yang terlalu besar - dengan prioritas tinggi */
+/* Reset semua avatar */
+* [class^="comment-avatar"],
+* [class*=" comment-avatar"],
+* [class^="reply-avatar"],
+* [class*=" reply-avatar"] {
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+/* RESET UKURAN FOTO PROFIL */
+/* Foto profil di komentar */
+.flex-shrink-0 img.comment-avatar,
+div.comment-placeholder-avatar,
+.comment-avatar,
+.comment-placeholder-avatar,
+img.comment-avatar,
+div.comment-placeholder-avatar,
+.activity-image-container + div + div + div img.comment-avatar,
+.activity-image-container + div + div + div div.comment-placeholder-avatar {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 1px solid #dbdbdb !important;
+    margin-right: 8px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 10px !important;
+    box-shadow: none !important;
+    flex-shrink: 0 !important;
+}
+
+/* Foto profil balasan */
+.reply-avatar,
+.reply-placeholder-avatar,
+img.reply-avatar,
+div.reply-placeholder-avatar {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 1px solid #dbdbdb !important;
+    margin-right: 4px !important;
+    overflow: hidden !important;
+    font-size: 8px !important;
+    box-shadow: none !important;
+    flex-shrink: 0 !important;
+}
+
+/* Reset CSS untuk container */
+.d-flex > .flex-shrink-0,
+div.d-flex > div.flex-shrink-0 {
+    flex-shrink: 0 !important;
+    width: auto !important;
+    max-width: 24px !important;
+}
+
+/* Latest comment fix */
+.latest-comment img.comment-avatar,
+.latest-comment div.comment-placeholder-avatar {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    font-size: 10px !important;
+    margin-right: 8px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Modal placeholders */
+div.comment-placeholder-avatar,
+div.reply-placeholder-avatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #6610f2 !important;
+    color: white !important;
+}
+
+/* Activity user avatar fix */
+.activity-user-placeholder {
+    width: 24px !important;
+    height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+    border-radius: 50% !important;
+    border: 1px solid #dbdbdb !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 12px !important;
+    margin-right: 8px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+    .comment-avatar,
+    .comment-placeholder-avatar,
+    img.comment-avatar,
+    div.comment-placeholder-avatar,
+    .latest-comment img.comment-avatar,
+    .latest-comment div.comment-placeholder-avatar {
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        min-height: 20px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
+        font-size: 9px !important;
+    }
+    
+    .reply-avatar,
+    .reply-placeholder-avatar,
+    img.reply-avatar,
+    div.reply-placeholder-avatar {
+        width: 16px !important;
+        height: 16px !important;
+        min-width: 16px !important;
+        min-height: 16px !important;
+        max-width: 16px !important;
+        max-height: 16px !important;
+        font-size: 7px !important;
+    }
+    
+    .activity-user-placeholder {
+        width: 22px !important;
+        height: 22px !important;
+        min-width: 22px !important;
+        min-height: 22px !important;
+        max-width: 22px !important;
+        max-height: 22px !important;
+        font-size: 10px !important;
+    }
+}
+
+/* IMPORTANT: Memastikan foto profil tidak mengubah ukuran karena konten */
+img.rounded-circle {
+    object-fit: cover !important;
+}
+
+/* Perbaiki alignment */
+.flex-grow-1.ms-3 {
+    margin-left: 0.3rem !important;
+}
+
+.flex-grow-1.ms-2 {
+    margin-left: 0.25rem !important;
+}
+
+/* Fix alignment pada komentar dan kontennya */
+div.comment-content {
+    font-size: 12px !important;
+}
+
+.d-flex.align-items-center img,
+.d-flex.align-items-center div.comment-placeholder-avatar {
+    align-self: center !important;
+}
+
+/* Force !important over all other styles */
+html body .comment-avatar, 
+html body .comment-placeholder-avatar {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+html body .reply-avatar, 
+html body .reply-placeholder-avatar {
+    width: 18px !important;
+    height: 18px !important;
+}

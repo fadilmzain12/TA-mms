@@ -1,0 +1,131 @@
+/* Perbaikan untuk foto profil pada komentar */
+
+/* CSS tambahan untuk memastikan ukuran placeholder avatar */
+.flex-shrink-0 div.comment-placeholder-avatar,
+.flex-shrink-0 div.reply-placeholder-avatar,
+.latest-comment div.comment-placeholder-avatar,
+div.comment-placeholder-avatar,
+div.reply-placeholder-avatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+/* Set ukuran dan border untuk avatar komentar */
+.comment-avatar, .comment-placeholder-avatar {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 1px solid #dbdbdb !important;
+    box-shadow: none !important;
+    margin-right: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+    background-color: #fafafa !important;
+}
+
+/* Set ukuran dan border untuk avatar balasan */
+.reply-avatar, .reply-placeholder-avatar {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 1px solid #dbdbdb !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+    background-color: #fafafa !important;
+}
+
+/* Memperbaiki container foto profil */
+.flex-shrink-0 {
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Memastikan gambar avatar tidak kebesaran */
+img.comment-avatar, img.reply-avatar {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+/* Font size untuk placeholder avatar */
+.comment-placeholder-avatar {
+    font-size: 0.6rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    background-color: #6610f2 !important;
+}
+
+.reply-placeholder-avatar {
+    font-size: 0.5rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    background-color: #6610f2 !important;
+}
+
+/* Avatar pada halaman daftar kegiatan */
+.latest-comment .comment-avatar,
+.latest-comment .comment-placeholder-avatar {
+    width: 24px !important;
+    height: 24px !important;
+    border: 1px solid #dbdbdb !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Perbaikan untuk user header */
+.activity-user-placeholder {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    border: 1px solid #dbdbdb !important;
+    background-color: #fafafa !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    margin-right: 0.5rem !important;
+}
+
+/* Mobile styling */
+@media (max-width: 767px) {
+    .comment-avatar, .comment-placeholder-avatar {
+        width: 22px !important;
+        height: 22px !important;
+    }
+    
+    .reply-avatar, .reply-placeholder-avatar {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    
+    .latest-comment .comment-avatar,
+    .latest-comment .comment-placeholder-avatar {
+        width: 22px !important;
+        height: 22px !important;
+    }
+    
+    .activity-user-placeholder {
+        width: 22px !important;
+        height: 22px !important;
+    }
+    
+    .comment-placeholder-avatar {
+        font-size: 0.55rem !important;
+    }
+    
+    .reply-placeholder-avatar {
+        font-size: 0.45rem !important;
+    }
+}

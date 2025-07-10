@@ -1,0 +1,232 @@
+/* Activities Dashboard Layout Fixes */
+/* SUPPORTS BOTH ADMIN AND MEMBER LAYOUTS */
+
+/* Remove default body scroll and set up proper layout */
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent body scroll */
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure navbar stays absolutely fixed */
+.navbar.sticky-top {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1030 !important;
+    width: 100% !important;
+    height: 48px !important;
+    transition: none !important;
+}
+
+/* Container fluid with proper height */
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 48px; /* Height of navbar */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Row container for sidebar and main */
+.container-fluid > .row {
+    flex: 1;
+    height: calc(100vh - 48px);
+    margin: 0;
+}
+
+/* Sidebar - Fixed position */
+.sidebar {
+    position: fixed !important;
+    top: 48px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 16.666667% !important; /* col-lg-2 for both admin and member */
+    z-index: 1020 !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+}
+
+/* Main content area - Scrollable */
+main.col-md-9.ms-sm-auto.col-lg-10 {
+    margin-left: 16.666667% !important; /* Account for sidebar width */
+    height: calc(100vh - 48px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    padding: 1rem;
+    background-color: var(--bs-body-bg);
+}
+
+/* Activities content container */
+.activities-container,
+.activity-container {
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+/* Sidebar activities - Remove sticky, make it part of scrollable content */
+.sidebar-activities {
+    position: static !important;
+    top: auto !important;
+    max-height: none !important;
+    overflow-y: visible;
+}
+
+/* Activities grid adjustments */
+.activities-grid {
+    margin-bottom: 2rem;
+}
+
+/* Additional layout improvements */
+/* Ensure proper height calculation for all elements */
+.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom {
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Search form styling for dashboard layout */
+.search-form {
+    margin-bottom: 1.5rem;
+}
+
+/* Activities grid with proper spacing */
+.activities-grid .col {
+    margin-bottom: 1rem;
+}
+
+/* Sidebar cards styling */
+.sidebar-activities .card {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Pagination styling */
+.pagination {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Alert styling */
+.alert {
+    margin-bottom: 1rem;
+}
+
+/* Back button styling */
+.btn.btn-outline-secondary.btn-sm {
+    margin-bottom: 1rem;
+}
+
+/* Responsive behavior */
+@media (max-width: 991.98px) {
+    .sidebar {
+        width: 25% !important; /* col-md-3 */
+    }
+    
+    main.col-md-9.ms-sm-auto.col-lg-10 {
+        margin-left: 25% !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    html, body {
+        overflow: auto; /* Allow normal scroll on mobile */
+    }
+    
+    .container-fluid {
+        padding-top: 56px; /* Mobile navbar height */
+        height: auto;
+        display: block;
+    }
+    
+    .container-fluid > .row {
+        height: auto;
+        display: block;
+    }
+    
+    .sidebar {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible;
+    }
+    
+    main.col-md-9.ms-sm-auto.col-lg-10 {
+        margin-left: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 15px;
+    }
+    
+    .sidebar-activities {
+        margin-top: 1rem;
+    }
+    
+    /* Navbar toggle button */
+    .navbar-toggler {
+        border: none;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    /* Sidebar collapse behavior */
+    .sidebar.collapse:not(.show) {
+        display: none;
+    }
+    
+    .sidebar.collapse.show {
+        display: block;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        background-color: var(--sidebar-bg);
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+    }
+    
+    /* Main content adjustments when sidebar is shown on mobile */
+    main.col-md-9.ms-sm-auto.col-lg-10 {
+        padding: 1rem 15px;
+    }
+}
+
+/* Ensure proper scrollbar styling */
+main::-webkit-scrollbar {
+    width: 6px;
+}
+
+main::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure sidebar toggle works properly */
+#sidebarMenu.collapse {
+    visibility: visible;
+}
+
+@media (min-width: 768px) {
+    #sidebarMenu.collapse {
+        display: block !important;
+        visibility: visible !important;
+    }
+}

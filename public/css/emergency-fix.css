@@ -1,0 +1,98 @@
+/* EMERGENCY FIX FOR PROFILE PHOTOS */
+
+img.comment-avatar,
+div.comment-placeholder-avatar,
+.comment-avatar,
+.comment-placeholder-avatar {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    border-radius: 50% !important;
+    border: 1px solid #dbdbdb !important;
+    overflow: hidden !important;
+    object-fit: cover !important;
+}
+
+/* Animation for form appear */
+@keyframes bounceEffect {
+    0% { transform: scale(0.95); opacity: 0.7; }
+    70% { transform: scale(1.03); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.bounce-effect {
+    animation: bounceEffect 0.3s ease-in-out forwards;
+}
+
+img.reply-avatar,
+div.reply-placeholder-avatar,
+.reply-avatar,
+.reply-placeholder-avatar {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
+    border-radius: 50% !important;
+    border: 1px solid #dbdbdb !important;
+    overflow: hidden !important;
+    object-fit: cover !important;
+}
+
+.activity-user-placeholder {
+    width: 24px !important;
+    height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+    border-radius: 50% !important;
+    border: 1px solid #dbdbdb !important;
+    overflow: hidden !important;
+}
+
+div.comment-placeholder-avatar, 
+div.reply-placeholder-avatar,
+.activity-user-placeholder {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #6610f2 !important;
+    color: white !important;
+}
+
+div.comment-placeholder-avatar {
+    font-size: 10px !important;
+}
+
+div.reply-placeholder-avatar {
+    font-size: 8px !important;
+}
+
+.activity-user-placeholder {
+    font-size: 12px !important;
+}
+
+/* Ensure the containers don't mess up the sizing */
+.flex-shrink-0, .latest-comment .flex-shrink-0 {
+    flex-shrink: 0 !important;
+}
+
+/* Fix any padding or margins */
+.flex-grow-1.ms-3, .flex-grow-1.ms-2 {
+    margin-left: 6px !important;
+}
+
+/* Fix comment section container */
+.latest-comment {
+    display: flex !important;
+    align-items: flex-start !important;
+}
+
+.latest-comment .comment-content {
+    flex-grow: 1;
+}

@@ -1,0 +1,199 @@
+/* Additional fix for comment spacing and layout */
+.flex-grow-1.ms-3 {
+    margin-left: 0.35rem !important;
+}
+
+.flex-grow-1.ms-2 {
+    margin-left: 0.3rem !important;
+}
+
+/* Make the user name and comment appear closer together in a more compact layout */
+.comment-user {
+    margin-right: 0.25rem;
+}
+
+/* Improve vertical alignment for comment text */
+.comment-content p, .reply-content p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+/* Ensure proper alignment of all elements */
+.d-flex {
+    align-items: flex-start;
+}
+
+/* Fix for the profile photo sizes in comments */
+.flex-shrink-0 img, .flex-shrink-0 .comment-placeholder-avatar {
+    display: block;
+    max-width: 100%;
+}
+
+/* Enhance profile photo appearance */
+.comment-avatar, .reply-avatar {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Ensure consistent spacing between comments */
+.comment-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Style the comment timestamp to be more subtle */
+.comment-time {
+    opacity: 0.7;
+    font-size: 0.7rem !important;
+}
+
+/* Make comment content more Instagram-like */
+.comment-content, .reply-content {
+    background-color: transparent !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Additional Instagram-specific styling */
+.comment-item {
+    border-bottom: none;
+    padding: 0.35rem 0;
+    margin-bottom: 0.1rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Make usernames bolder and smaller - Instagram style */
+.comment-user {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Comment text styling - Instagram style */
+.comment-content p {
+    font-size: 0.75rem !important;
+    line-height: 1.3;
+    display: inline;
+    margin-left: 0.1rem;
+}
+
+/* Reply text styling */
+.reply-content p {
+    font-size: 0.7rem !important;
+    margin-left: 0.1rem;
+}
+
+/* Fix vertical alignment in comment rows */
+.d-flex.align-items-start {
+    align-items: center !important;
+}
+
+/* Instagram-style likes count */
+.like-count {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Perbaikan layout untuk seluruh halaman kegiatan */
+.activity-container {
+    max-width: 600px !important;
+}
+
+/* Perbaikan untuk komentar balasan */
+.reply-container {
+    margin-top: 0.1rem !important;
+    margin-left: 1.2rem !important;
+    padding-left: 0.3rem !important;
+}
+
+/* Perbaikan tampilan komentar */
+.comment-item {
+    padding: 0.25rem 0 !important;
+}
+
+/* Perbaikan konten komentar dan balasan */
+.comment-content, .reply-content {
+    background-color: transparent !important;
+    padding: 0 !important;
+    display: inline-block !important;
+}
+
+/* Perbaikan ukuran font */
+.comment-user {
+    font-size: 0.7rem !important;
+}
+
+.comment-content p {
+    font-size: 0.7rem !important;
+    margin-bottom: 0 !important;
+}
+
+.reply-content p {
+    font-size: 0.68rem !important;
+    margin-bottom: 0 !important;
+}
+
+/* Perbaikan margin dan padding */
+.flex-grow-1 {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Perbaikan tampilan timestamp */
+.comment-time {
+    font-size: 0.65rem !important;
+    opacity: 0.7;
+    margin-left: 0.2rem;
+}
+
+/* Perbaikan tombol balas */
+.btn-sm {
+    padding: 0.1rem 0.4rem !important;
+    font-size: 0.65rem !important;
+}
+
+/* Perbaikan positioning */
+.d-flex {
+    align-items: flex-start !important;
+}
+
+.d-flex.align-items-center {
+    align-items: center !important;
+}
+
+/* Perbaikan untuk tampilan mobile */
+@media (max-width: 576px) {
+    .activity-container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    .card-body {
+        padding: 0.5rem !important;
+    }
+    
+    .comment-item, .reply-item {
+        padding: 0.2rem 0 !important;
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+    .comment-user {
+        font-size: 0.8rem;
+    }
+    
+    .comment-content p {
+        font-size: 0.8rem !important;
+    }
+    
+    .reply-content p {
+        font-size: 0.75rem !important;
+    }
+    
+    .comment-time {
+        font-size: 0.65rem !important;
+    }
+}

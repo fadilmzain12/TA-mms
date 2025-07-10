@@ -1,0 +1,10 @@
+{
+    "rules": {
+        "no-trailing-whitespace": false,
+        "no-html-comments": false,
+        "no-implicit-close": false,
+        "no-explicit-close": false,
+        "no-undef": false,
+        "disable-interpolation-validation": true
+    }
+}
